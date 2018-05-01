@@ -13,8 +13,8 @@
                     </div>
 
                     <div class="arriv-info">
-                        <h3>FANTASTIKA</h3>
-                        <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
+                        <h3>&emsp;FANTASTIKA</h3>
+                        <p>&emsp;&emsp;LITERATURE IN THE FORM OF PROSE</p>
                         <div class="crt-btn">
                             <a href="details.html">READ</a>
                         </div>
@@ -29,7 +29,7 @@
 
                     <div class="arriv-info">
                         <h3>BADIIY</h3>
-                        <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
+                        <p>PROSE WRITING THAT IS INFORMATIVE OR FACTUAL</p>
                         <div class="crt-btn">
                             <a href="details.html">READ</a>
                         </div>
