@@ -38,9 +38,9 @@
         <div class="header_top">
             <div class="top_right">
                 <ul>
-                    <li><a href="#">help</a></li>|
-                    <li><a href="contact.html">Contact</a></li>|
-                    <li><a href="#">Delivery information</a></li>
+                    <li><a href="#">Yordam</a></li>|
+                    <li><a href="contact.html">Biz Bilan Aloq</a></li>|
+                    <li><a href="#">Biz Haqimizda</a></li>
                 </ul>
             </div>
             <div class="top_left">
