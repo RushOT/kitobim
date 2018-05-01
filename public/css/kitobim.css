@@ -1,0 +1,41 @@
+/*
+.opaque{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.65);
+    margin-right: 15px;
+}
+
+.arriv-info{
+    z-index: 11;
+}*/
+.image-container {
+    width: 556px;
+}
+.layer-on-image {
+    position: absolute;
+    background-color: rgba(0,0,0,0.6);
+    width: 34.8rem;
+    height: 100%;
+}
+
+.image-container2 {
+    width: 745px;
+}
+.layer-on-image2 {
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width: 46.6rem;
+    height: 100%;
+}
+.image-container3 {
+    width: 365px;
+}
+.layer-on-image3 {
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    width: 22.9rem;
+    height: 100%;
+}

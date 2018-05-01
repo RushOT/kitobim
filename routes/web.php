@@ -1,0 +1,143 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+use App\Book;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/', function () {
+
+    $publishers = \App\Publisher::all();
+
+    return view('kitobim.welcome', compact('publishers'));
+});
+
+Route::get('/books','KitobimController@allBooks');
+
+Route::get('/download/{id}', function ($id){
+    $book = Book::find($id);
+
+    return Storage::download($book->epub);
+});
+
+Route::get('/admin', function () {
+    return view('carbon.dashboard');
+});
+
+Route::get('/admin/feedbacks','KitobimController@getFeedbacks');
+
+
+/*PUBLISHERS related routes*/
+
+Route::get('/admin/publishers', 'PublisherController@index');
+
+Route::get('/admin/publisher','PublisherController@create');
+
+Route::post('/admin/publishers','PublisherController@store');
+
+Route::get('/admin/publishers/{id}','PublisherController@edit');
+
+Route::patch('/admin/publishers/{id}','PublisherController@update');
+
+Route::delete('/admin/publishers/{id}','PublisherController@destroy');
+
+/*BOOKS related routes*/
+
+Route::get('/admin/books', 'BooksController@index');
+
+Route::get('/admin/book','BooksController@create');
+
+Route::get('/admin/books/{id}', 'BooksController@edit');
+
+Route::patch('/admin/books/{id}', 'BooksController@update');
+
+Route::delete('/admin/books/{id}', 'BooksController@destroy');
+
+Route::post('/admin/books', 'BooksController@store');
+
+Route::post('/relatedbook', 'BooksController@getRelatedBook');
+
+/*AUTHORS related routes*/
+
+Route::get('/admin/authors', 'AuthorsController@index');
+
+Route::get('/admin/author', 'AuthorsController@create');
+
+Route::post('/admin/authors', 'AuthorsController@store');
+
+Route::get('/admin/authors/{id}','AuthorsController@edit');
+
+Route::patch('/admin/authors/{id}','AuthorsController@update');
+
+Route::delete('/admin/authors/{id}','AuthorsController@destroy');
+
+Route::post('/authorsajax','AuthorsController@getAuthorsForSearch');
+
+/*GENRES related routes*/
+
+Route::get('/admin/genres','GenresController@create');
+
+Route::get('/admin/genres/{id}','GenresController@show');
+
+Route::post('/admin/genres','GenresController@store');
+
+Route::patch('/admin/genres/{id}','GenresController@update');
+
+Route::delete('/admin/genres/{id}','GenresController@destroy');
+
+/*COLLECTIONS related routes*/
+
+Route::get('/admin/collections','CollectionsController@index');
+
+Route::post('/admin/collections','CollectionsController@store');
+
+Route::get('/admin/collections/{id}','CollectionsController@edit');
+
+Route::patch('/admin/collections/{id}','CollectionsController@update');
+
+Route::delete('/admin/collections/{id}','CollectionsController@destroy');
+/*USERS related routes*/
+
+Route::get('/admin/users','UsersController@create');
+
+/*MAGAZINE routes*/
+
+Route::get('/admin/magazines','MagazinesController@create');
+
+Route::post('/admin/magazines', 'MagazinesController@store');
+
+Route::get('/admin/magazines/{id}', 'MagazinesController@edit');
+
+Route::patch('/admin/magazines/{id}', 'MagazinesController@update');
+
+Route::delete('/admin/magazines/{id}', 'MagazinesController@destroy');
+/*ISSUE routes*/
+
+Route::get('/admin/issue','MagazinesController@createIssue');
+
+Route::get('/admin/issues','MagazinesController@allIssues');
+
+Route::post('/admin/issues','MagazinesController@storeIssue');
+
+Route::get('/admin/issues/{id}','MagazinesController@editIssue');
+
+Route::patch('/admin/issues/{id}','MagazinesController@updateIssue');
+
+Route::delete('/admin/issues/{id}','MagazinesController@destroyIssue');
+
+/*DOWNLOAD Section*/
+
+Route::get('/download/books/{filename}','KitobimController@downloadBook');
+
+Route::get('/download/issuespdf/{filename}','KitobimController@downloadPdf');
+
+Route::get('/download/issuesepub/{filename}','KitobimController@downloadEpub');

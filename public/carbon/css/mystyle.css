@@ -1,0 +1,55 @@
+.align-to-right{
+    float: right;
+}
+
+.shadow-rect{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-container{
+    max-width: 200px;
+    display: block;
+}
+
+.img-container img{
+    width: 100%;
+    height: auto;
+}
+
+.upload-button{
+    display: block;
+    margin: .5rem auto !important;
+}
+
+.upload-button input[type="file"] {
+    display: none;
+}
+
+.clickable-row{
+    cursor: pointer;
+}
+
+.clickable-row:hover{
+    background-color: rgba(14, 26, 18, 0.67) !important;
+    color: white;
+}
+
+.table-link-url{
+    color: #0c87eb;
+}
+
+.clickable-row:hover .table-link-url {
+    color: white;
+}
+
+.anchorTagAuthor{
+    cursor: pointer;
+}
+
+.badge.badge-info.mr-1{
+    cursor: pointer;
+}
+
+.badge.badge-info.mr-1:hover{
+    background-color: red;
+}
