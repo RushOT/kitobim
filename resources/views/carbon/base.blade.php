@@ -20,8 +20,8 @@
             <i class="fa fa-bars"></i>
         </a>
 
-        <a class="navbar-brand" href="#">
-            <strong class="text-center">Kitobim</strong>
+        <a class="navbar-brand" href="/">
+            <img src="{{asset('gretong/images/kitobim_ava.png')}}" alt="" width="127" height="30">
         </a>
 
         <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
@@ -165,10 +165,25 @@
                     </li>
 
 
-                    <li class="nav-item">
-                        <a href="/admin/users" class="nav-link @yield('active_users')">
-                            <i class="icon icon-people"></i> Users
+                    <li class="nav-item nav-dropdown">
+                        <a href="#" class="nav-link @yield('active_users') @yield('active_users_add') nav-dropdown-toggle">
+                            <i class="icon icon-people"></i> Users <i class="fa fa-caret-left"></i>
                         </a>
+
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a href="/admin/users" class="nav-link @yield('active_users')">
+                                    <i class="icon icon-list"></i> All
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/admin/user" class="nav-link @yield('active_users_add')">
+                                    <i class="icon icon-plus"></i> Add
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <li class="nav-item nav-dropdown">
@@ -265,7 +280,6 @@
 <script src="{{asset('carbon/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('carbon/vendor/popper.js/popper.min.js')}}"></script>
 <script src="{{asset('carbon/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('carbon/vendor/chart.js/chart.min.js')}}"></script>
 <script src="{{asset('carbon/js/carbon.js')}}"></script>
 <script src="{{asset('carbon/js/demo.js')}}"></script>
 <script src="{{asset('carbon/js/datatable.js')}}"></script>

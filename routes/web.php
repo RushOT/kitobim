@@ -30,12 +30,33 @@ Route::get('/download/{id}', function ($id){
 });
 
 Route::get('/admin', function () {
-    return view('carbon.dashboard');
+    $usersCount = \App\User::count();
+    $activeUsersCount = \App\User::where('is_active', 1)->count();
+    $booksCount = Book::count();
+    $authorsCount = \App\Author::count();
+    $publishersCount = \App\Publisher::count();
+    $magazinesCount = \App\Magazine::count();
+
+    return view('carbon.dashboard', compact('usersCount', 'activeUsersCount',
+        'booksCount','authorsCount','publishersCount','magazinesCount'));
 });
 
 Route::get('/admin/feedbacks','KitobimController@getFeedbacks');
 
 
+/*USERS routes*/
+
+Route::get('/admin/users','UsersController@index');
+
+Route::get('/admin/user','UsersController@create');
+
+Route::post('/admin/user','UsersController@store');
+
+Route::get('/admin/users/{id}','UsersController@edit');
+
+Route::patch('/admin/users/{id}','UsersController@update');
+
+Route::delete('/admin/users/{id}','UsersController@destroy');
 /*PUBLISHERS related routes*/
 
 Route::get('/admin/publishers', 'PublisherController@index');
@@ -105,9 +126,6 @@ Route::get('/admin/collections/{id}','CollectionsController@edit');
 Route::patch('/admin/collections/{id}','CollectionsController@update');
 
 Route::delete('/admin/collections/{id}','CollectionsController@destroy');
-/*USERS related routes*/
-
-Route::get('/admin/users','UsersController@create');
 
 /*MAGAZINE routes*/
 

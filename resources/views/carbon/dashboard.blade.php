@@ -10,7 +10,7 @@
             <div class="card p-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <span class="h4 d-block font-weight-normal mb-2">54,323</span>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$usersCount}}</span>
                         <span class="font-weight-light">Total Users</span>
                     </div>
 
@@ -25,7 +25,7 @@
             <div class="card p-4">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <span class="h4 d-block font-weight-normal mb-2">2,134</span>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$activeUsersCount}}</span>
                         <span class="font-weight-light">Active Users</span>
                     </div>
 
@@ -61,6 +61,69 @@
 
                     <div class="h2 text-muted">
                         <i class="icon icon-cloud-download" style="color: #08a1a7"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$booksCount}}</span>
+                        <span class="font-weight-light">Books</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-book-open text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$authorsCount}}</span>
+                        <span class="font-weight-light">Authors</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-pencil" style="color: #52ebbc"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$publishersCount}}</span>
+                        <span class="font-weight-light">Publishers</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-organization" style="color: #a75d04"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card p-4">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="h4 d-block font-weight-normal mb-2">{{$magazinesCount}}</span>
+                        <span class="font-weight-light">Magazines</span>
+                    </div>
+
+                    <div class="h2 text-muted">
+                        <i class="icon icon-docs" style="color: #08a1a7"></i>
                     </div>
                 </div>
             </div>
@@ -105,4 +168,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('carbon/vendor/chart.js/chart.min.js')}}"></script>
 @endsection
