@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
+use App\Collection;
+use App\Genre;
 use App\Issue;
+use App\Magazine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KitobimController extends Controller
@@ -33,11 +38,18 @@ class KitobimController extends Controller
         return Storage::download($issue->epub);
     }
 
-    public function allBooks(){
-        $books = Book::all();
+    public function browse($item){
 
-        return view('kitobim.books', compact('books'));
+        $books = Book::paginate(10);
+        $authors = Author::paginate(12);
+        $genres = Genre::with('books')->get();
+        $collections = Collection::with('books')->get();;
+        $magazines = Magazine::all();
+
+
+        return view('kitobim.browse', compact('item','books','authors','genres','collections','magazines'));
     }
+
 
 
 }

@@ -70,9 +70,13 @@
                         <i class="fa fa-wrench"></i> Settings
                     </a>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-lock"></i> Logout
-                    </a>
+                    <a href="{{ route('logout') }}" class="dropdown-item"
+                       onclick="event.preventDefault();
+                       document.getElementById('logout-form').submit();">
+                        <i class="fa fa-lock"></i> Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>

@@ -21,8 +21,9 @@ class CreateUsersTable extends Migration
             $table->boolean('email_verified')->default(false);
             $table->boolean('phone_verified')->default(false);
             $table->dateTime('last_login');
-            $table->boolean('is_active');
+            $table->boolean('is_active')->default(false);
             $table->string('password');
+            $table->string('activation_code')->nullable();
             $table->string('birth')->nullable();
             $table->string('city')->nullable();
             $table->boolean('is_admin')->default(false);

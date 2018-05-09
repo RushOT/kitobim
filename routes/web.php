@@ -21,7 +21,11 @@ Route::get('/', function () {
     return view('kitobim.welcome', compact('publishers'));
 });
 
-Route::get('/books','KitobimController@allBooks');
+Route::get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('activate.user');
+
+Route::get('/browse/{item}','KitobimController@browse');
+
+Route::get('/authors','KitobimController@authors');
 
 Route::get('/download/{id}', function ($id){
     $book = Book::find($id);
@@ -39,9 +43,9 @@ Route::get('/admin', function () {
 
     return view('carbon.dashboard', compact('usersCount', 'activeUsersCount',
         'booksCount','authorsCount','publishersCount','magazinesCount'));
-});
+})->middleware('auth');
 
-Route::get('/admin/feedbacks','KitobimController@getFeedbacks');
+Route::get('/admin/feedbacks','KitobimController@getFeedbacks')->middleware('auth');
 
 
 /*USERS routes*/
@@ -159,3 +163,7 @@ Route::get('/download/books/{filename}','KitobimController@downloadBook');
 Route::get('/download/issuespdf/{filename}','KitobimController@downloadPdf');
 
 Route::get('/download/issuesepub/{filename}','KitobimController@downloadEpub');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

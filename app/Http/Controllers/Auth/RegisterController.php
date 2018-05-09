@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\UserRegisteredSuccessfully;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required_without:phone|nullable|string|email|max:255|unique:users',
+            'phone' => 'required_without:email',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -63,10 +65,38 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+
+        if (!empty($data['email'])){
+            $user->email = $data['email'];
+        }
+        if (!empty($data['phone'])){
+            $user->phone = $data['phone'];
+        }
+        $user->is_active = 0;
+        $user->password = Hash::make($data['password']);
+        $user->last_login = now();
+        $user->activation_code = str_random(30).time();
+        $user->notify(new UserRegisteredSuccessfully($user));
+        $user->save();
+
+        return $user;
+    }
+
+    public function activateUser($code)
+    {
+            $user = User::where('activation_code', $code)->first();
+            if (!$user) {
+                return "The code does not exist for any user in our system.";
+            }
+            $user->is_active = 1;
+            $user->activation_code = null;
+            $user->update();
+            auth()->login($user);
+
+        return redirect()->to('/home');
     }
 }

@@ -1,128 +1,177 @@
 @extends('kitobim.master')
 
+@section('links')
+    <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}"/>
+    <script type="text/javascript" src="{{asset('slick/slick.min.js')}}"></script>
+@endsection
+
 @section('content')
-    <div class="arriv">
+    <h2 class="pt-2" align="center">Reccomended Books</h2>
+    <hr class="container">
+    <div id="advert">
         <div class="container">
-            <div class="arriv-top">
-                <div class="col-md-6 arriv-left">
-
-                    <div class="image-container">
-                        <div class="layer-on-image"></div>
-                        <img src="{{asset('gretong/images/fiction.jpg')}}" class="img-responsive" alt="">
-
-                    </div>
-
-                    <div class="arriv-info">
-                        <h3>&emsp;FANTASTIKA</h3>
-                        <p>&emsp;&emsp;LITERATURE IN THE FORM OF PROSE</p>
-                        <div class="crt-btn">
-                            <a href="details.html">READ</a>
+            <div class="slider">
+                <div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="mainBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="300px" width="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <h4> <span> by &nbsp</span> George Martin</h4>
+                            <h6>Game Of Thrones</h6>
+                            <div>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <p>
+                                George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
+                            </p>
+                            <button class="btn btn-primary"><i class="icon icon-book-open"></i> READ</button>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6 arriv-right">
-                    <div class="image-container">
-                        <div class="layer-on-image"></div>
-                        <img src="{{asset('gretong/images/non_fiction.jpg')}}" class="img-responsive" alt="">
-                    </div>
-
-                    <div class="arriv-info">
-                        <h3>BADIIY</h3>
-                        <p>PROSE WRITING THAT IS INFORMATIVE OR FACTUAL</p>
-                        <div class="crt-btn">
-                            <a href="details.html">READ</a>
+                <div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="mainBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="300px" width="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <h4> <span> by &nbsp</span> George Martin</h4>
+                            <h6>Game Of Thrones</h6>
+                            <div>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <p>
+                                George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
+                            </p>
+                            <button class="btn btn-primary box"><i class="icon icon-book-open"></i> READ</button>
                         </div>
                     </div>
                 </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="arriv-bottm">
-                <div class="col-md-8 arriv-left1">
-
-                    <img src="{{asset('gretong/images/3.jpg')}}" class="img-responsive" alt="">
-                    <div class="arriv-info1">
-                        <h3>BOLALAR UCHUN</h3>
-                        <p>REVIVE YOUR WARDROBE WITH CHIC KNITS</p>
-                        <div class="crt-btn">
-                            <a href="details.html">READ</a>
+                <div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="mainBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="300px" width="200px">
+                        </div>
+                        <div class="col-md-8">
+                            <h4> <span> by &nbsp</span> George Martin</h4>
+                            <h6>Game Of Thrones</h6>
+                            <div>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <p>
+                                George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
+                            </p>
+                            <button class="btn btn-primary box"><i class="icon icon-book-open"></i> READ</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 arriv-right1">
-                    <img src="{{asset('gretong/images/4.jpg')}}" class="img-responsive" alt="">
-                    <div class="arriv-info2">
-                        <a href="details.html"><h3>Sayohat<i class="ars"></i></h3></a>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-            <div class="arriv-las">
-                <div class="col-md-4 arriv-left2">
-                    <img src="{{asset('gretong/images/5.jpg')}}" class="img-responsive" alt="">
-                    <div class="arriv-info2">
-                        <a href="details.html"><h3>Klassika<i class="ars"></i></h3></a>
-                    </div>
-                </div>
-                <div class="col-md-4 arriv-middle">
-                    <img src="{{asset('gretong/images/6.jpg')}}" class="img-responsive" alt="">
-                    <div class="arriv-info3">
-                        <h3>SHE'RIYAT</h3>
-                        <div class="crt-btn">
-                            <a href="details.html">READ</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 arriv-right2">
-                    <img src="{{asset('gretong/images/7.jpg')}}" class="img-responsive" alt="">
-                    <div class="arriv-info2">
-                        <a href="details.html"><h3>Abituriyentlar uchun<i class="ars"></i></h3></a>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
-    <div class="special">
-        <div class="container">
-            <h3>TOP REYTING</h3>
-            <div class="specia-top">
-                <ul class="grid_2">
-                    <li>
-                        <a href="details.html"><img src="{{asset('gretong/images/8.jpg')}}" class="img-responsive" alt=""></a>
-                        <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5>Lorem ipsum dolor</h5>
-                            <div class="item_add"><span class="item_price"><h6>ONLY $40.00</h6></span></div>
-                            <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="details.html"><img src="{{asset('gretong/images/9.jpg')}}" class="img-responsive" alt=""></a>
-                        <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5>Consectetur adipis</h5>
-                            <div class="item_add"><span class="item_price"><h6>ONLY $60.00</h6></span></div>
-                            <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="details.html"><img src="{{asset('gretong/images/10.jpg')}}" class="img-responsive" alt=""></a>
-                        <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5>Commodo consequat</h5>
-                            <div class="item_add"><span class="item_price"><h6>ONLY $14.00</h6></span></div>
-                            <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="details.html"><img src="{{asset('gretong/images/11.jpg')}}" class="img-responsive" alt=""></a>
-                        <div class="special-info grid_1 simpleCart_shelfItem">
-                            <h5>Voluptate velit</h5>
-                            <div class="item_add"><span class="item_price"><h6>ONLY $37.00</h6></span></div>
-                            <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-                        </div>
-                    </li>
-                    <div class="clearfix"> </div>
-                </ul>
+
+    <div class="container">
+        <h4 class=" mt-4" align="center">Picks of the week</h4>
+        <hr>
+        <div class="row book-container">
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/gone.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Linda Green</p>
+                    <h6 align="center">After I've Gone</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/cover1.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Guy Kawasaki</p>
+                    <h6 align="center">Enchanment</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/snatch.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Ty Hutchinson</p>
+                    <h6 align="center">Contract: Snatch</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/harry.png')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> J.K.Rownling</p>
+                    <h6 align="center">Harry Potter and the Philosopher's stone</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> George R.R. Martin</p>
+                    <h6 align="center">A Game of Thrones</h6>
+                </a>
+            </div>
+        </div>
+        <h4 class=" mt-4" align="center">New Releases</h4>
+        <hr>
+        <div class="row book-container">
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/gone.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Linda Green</p>
+                    <h6 align="center">After I've Gone</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/cover1.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Guy Kawasaki</p>
+                    <h6 align="center">Enchanment</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/snatch.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> Ty Hutchinson</p>
+                    <h6 align="center">Contract: Snatch</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/harry.png')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> J.K.Rownling</p>
+                    <h6 align="center">Harry Potter and the Philosopher's stone</h6>
+                </a>
+            </div>
+            <div class="col">
+                <a class="bookAnchor" href="">
+                    <img class="shelfBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="225px" width="150px">
+                    <p class="mt-2 mb-1" align="center"> George R.R. Martin</p>
+                    <h6 align="center">A Game of Thrones</h6>
+                </a>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.slider').slick({
+                autoplay: true,
+                dots: true,
+            });
+        });
+
+    </script>
 @endsection

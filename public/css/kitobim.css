@@ -39,3 +39,191 @@
     width: 22.9rem;
     height: 100%;
 }
+
+.book-cover{
+    margin: 20px;
+}
+
+.header{
+    position: fixed;
+    width: 100%;
+    background: rgb(244, 241, 234);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.20);
+}
+
+.main-content{
+    position: absolute;
+    top: 60px;
+    width: 100%;
+}
+
+a.navbar-brand{
+    padding-top: 0px;
+}
+
+.dropdown-menu.show{
+    margin-top: 9px;
+    padding: 8px;
+    border-radius: 0px 0px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    font-size: 0.9rem;
+    overflow: hidden;
+    background-color: rgb(244, 241, 234);
+}
+
+#bigDropdown{
+    width: 500px;
+}
+
+#random-book-container{
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(7, 131, 137, 0.26);
+}
+#leftOfRand{
+    border-right: 1px solid black;
+}
+
+#titleOfRandomBook{
+    margin-bottom: 10px;
+}
+
+.checked-star{
+    color: orange;
+}
+
+
+#register{
+    float: right;
+}
+
+#advert{
+    height:400px;
+    background-color: rgb(244, 241, 234);
+    padding: 50px;
+}
+
+.mainBookImage{
+    margin-left: 30px;
+    box-shadow: 0 1px 15px rgba(0,0,0,0.35);
+}
+
+h4 span{
+    font-size: large;
+    font-weight: 400;
+}
+
+
+button.slick-prev.slick-arrow:before{
+    color: rgba(0, 0, 0, 0.65);
+}
+
+button.slick-next.slick-arrow:before{
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.shelfBookImage{
+    margin-left: 20px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+}
+
+.shelfBBookImage{
+    box-shadow: 0 4px 5px rgba(0,0,0,0.15);
+}
+
+.bookAnchor{
+    color: black;
+}
+
+.bookAnchor:hover{
+    color: black;
+    text-decoration: none;
+}
+
+.footer{
+    width: 100%;
+    background: rgb(244, 241, 234);
+    padding-bottom: 30px;
+}
+
+.footerLinks{
+    color: grey;
+}
+
+.footerLinks:hover{
+    color: black;
+}
+
+.btn.btn-primary{
+    border-radius: 0px 0px;
+}
+
+#suggestionsText{
+    font-size: 0.8rem;
+}
+
+.bookDesc{
+    font-size: 0.9rem;
+}
+
+/*BOOKS*/
+
+
+a#v-pills-books-tab.nav-link.active{
+    background-color: rgb(244, 241, 234);
+    color: black;
+    border-radius: 0px 0px;
+}
+
+a#v-pills-authors-tab.nav-link.active{
+    background-color: rgb(244, 241, 234);
+    color: black;
+    border-radius: 0px 0px;
+}
+
+a#v-pills-genres-tab.nav-link.active{
+    background-color: rgb(244, 241, 234);
+    color: black;
+    border-radius: 0px 0px;
+}
+
+a#v-pills-collections-tab.nav-link.active{
+    background-color: rgb(244, 241, 234);
+    color: black;
+    border-radius: 0px 0px;
+}
+
+a#v-pills-magazines-tab.nav-link.active{
+    background-color: rgb(244, 241, 234);
+    color: black;
+    border-radius: 0px 0px;
+}
+
+
+.nav-link{
+    color: black;
+}
+
+h6 span {
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.bookTitle{
+    hyphens: auto;
+    font-size: 0.8rem;
+    margin: 2px;
+    width: 100px;
+}
+
+.vertical-hr{
+    border-right: 1px solid grey;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #advert{
+        display: none;
+    }
+}
