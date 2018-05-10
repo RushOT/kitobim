@@ -1,5 +1,7 @@
 @extends('kitobim.master')
 
+@javascript('uid',Auth::id())
+
 @section('content')
     <!-- content -->
     <div class="container">
@@ -19,7 +21,13 @@
                         @foreach($books as $book)
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <img class="shelfBBookImage" src="{{asset('images/placeholder.png')}}" alt="" height="170px" width="110px">
+                                    <img class="shelfBookImageNoBorder"
+                                         @if(empty($book->cover))
+                                         src="{{asset('images/placeholder.png')}}"
+                                         @else
+                                         src="{{asset('storage/'.$book->cover)}}"
+                                         @endif
+                                         alt="" height="170px" width="110px">
                                     <div class="mt-2">
                                         <span class="fa fa-star checked-star"></span>
                                         <span class="fa fa-star checked-star"></span>
@@ -27,115 +35,41 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>  3.4/5
                                     </div>
-                                    <button class="btn btn-primary">{{$book->price}} so'm</button>
+                                    <a href="/books/{{$book->id}}" class="btn btn-primary buttonToAnchor">{{$book->price}} so'm</a>
                                 </div>
                                 <div class="col-sm-9">
-                                    <h6> <span> by &nbsp</span> Author</h6>
+                                    <h6> <span> by &nbsp</span>
+                                        @foreach($book->authors as $author)
+                                            <a class="kitobimLink" href="/authors/{{$author->id}}">{{$author->name}}</a>
+                                            @if(!$loop->last)
+                                                ,
+                                            @endif
+                                        @endforeach
+                                    </h6>
                                     <h6>{{$book->title}}</h6>
                                     <p class="bookDesc">
                                         {{$book->annotation}}
                                     </p>
-                                    <button class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to wishlist</button>
+                                    <button id="{{$book->id}}" class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to Wishlist</button>
                                 </div>
                             </div>
                             <hr>
                         @endforeach
                         {{$books->links()}}
-                        {{--<div class="row">
-                            <div class="col-sm-3">
-                                <img class="shelfBBookImage" src="{{asset('images/snatch.jpg')}}" alt="" height="170px" width="110px">
-                                <div class="mt-2">
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>  3.4/5
-                                </div>
-                                <button class="btn btn-primary">3000 so'm</button>
-                            </div>
-                            <div class="col-sm-9">
-                                <h6> <span> by &nbsp</span> Ty Hutchinson</h6>
-                                <h6>Contract: Snatch</h6>
-                                <p class="bookDesc">
-                                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Sed porttitor lectus nibh. Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                                </p>
-                                <button class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to wishlist</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img class="shelfBBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="170px" width="110px">
-                                <div class="mt-2">
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>  3.4/5
-                                </div>
-                                <button class="btn btn-primary">3000 so'm</button>
-                            </div>
-                            <div class="col-sm-9">
-                                <h6> <span> by &nbsp</span> George Martin</h6>
-                                <h6>Game Of Thrones</h6>
-                                <p class="bookDesc">
-                                    George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
-                                </p>
-                                <button class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to wishlist</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img class="shelfBBookImage" src="{{asset('images/gone.jpg')}}" alt="" height="170px" width="110px">
-                                <div class="mt-2">
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>  3.4/5
-                                </div>
-                                <button class="btn btn-primary">3000 so'm</button>
-                            </div>
-                            <div class="col-sm-9">
-                                <h6> <span> by &nbsp</span> Linda Green</h6>
-                                <h6>After I've Gone</h6>
-                                <p class="bookDesc">
-                                    Sed porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec rutrum congue leo eget malesuada. Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-                                </p>
-                                <button class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to wishlist</button>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img class="shelfBBookImage" src="{{asset('images/harry.png')}}" alt="" height="170px" width="110px">
-                                <div class="mt-2">
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star checked-star"></span>
-                                    <span class="fa fa-star"></span>
-                                    <span class="fa fa-star"></span>  3.4/5
-                                </div>
-                                <button class="btn btn-primary">3000 so'm</button>
-                            </div>
-                            <div class="col-sm-9">
-                                <h6> <span> by &nbsp</span> J.K.K. Rownling</h6>
-                                <h6>Harry Potter and the Philosopher's stone</h6>
-                                <p class="bookDesc">
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Vivamus suscipit tortor eget felis porttitor volutpat. Nulla quis lorem ut libero malesuada feugiat. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                </p>
-                                <button class="btn btn-outline-warning"><i class="icon icon-heart"></i>  Add to wishlist</button>
-                            </div>
-                        </div>
-                        <hr>--}}
+                            <div id="snackbar">Added to Wishlist</div>
                     </div>
                     <div class="tab-pane fade @if($item == "authors") show active @endif " id="v-pills-authors" role="tabpanel" aria-labelledby="v-pills-authors-tab">
                         <div class="row">
                             @foreach($authors as $author)
                                 <div class="col-sm-3 mt-4">
                                     <a class="bookAnchor" href="/authors/{{$author->id}}">
-                                        <img class="shelfBBookImage" src="{{asset('images/aplaceholder.jpg')}}" alt="" height="200px" width="150px">
+                                        <img class="shelfBookImageNoBorder"
+                                             @if(empty($author->photo))
+                                                src="{{asset('images/aplaceholder.jpg')}}"
+                                             @else
+                                                src="{{asset('storage/'.$author->photo)}}"
+                                             @endif
+                                             alt="" height="200px" width="150px">
                                         <h6 class="pt-3">{{$author->name}}</h6>
                                     </a>
                                 </div>
@@ -156,8 +90,8 @@
                                 @foreach($genre->books as $book)
                                     <a class="bookAnchor" href="/books/{{$book->id}}">
                                         <div class="m-3">
-                                            <img src="{{asset('images/placeholder_book.jpg')}}" alt="" width="100" height="150">
-                                            <h6 class="bookTitle">{{$book->title}}</h6>
+                                            <img class="shelfBookImageNoBorder" src="{{asset('images/placeholder.png')}}" alt="" width="100" height="150">
+                                            <h6 class="bookTitle mt-2">{{$book->title}}</h6>
                                         </div>
                                     </a>
                                 @endforeach
@@ -175,7 +109,7 @@
                                 @foreach($collection->books as $book)
                                     <a class="bookAnchor" href="/books/{{$book->id}}">
                                         <div class="m-3">
-                                            <img src="{{asset('images/placeholder_book.jpg')}}" alt="" width="100" height="150">
+                                            <img src="{{asset('images/placeholder.png')}}" alt="" width="100" height="150">
                                             <h6 class="bookTitle">{{$book->title}}</h6>
                                         </div>
                                     </a>
@@ -205,4 +139,37 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('carbon/js/axios.min.js')}}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            let wishlistButton = $('.btn.btn-outline-warning');
+
+            wishlistButton.click(function(){
+
+                let bid = $(this).attr('id');
+
+                axios.post('/wishlist', {
+                    book_id: parseInt(bid),
+                    user_id: uid
+                })
+                    .then(function (response) {
+                        let x = document.getElementById("snackbar");
+
+                        // Add the "show" class to DIV
+                        x.className = "show";
+
+                        // After 3 seconds, remove the show class from DIV
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
+
+        });
+    </script>
 @endsection

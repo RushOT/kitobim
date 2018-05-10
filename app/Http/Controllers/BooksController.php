@@ -85,6 +85,12 @@ class BooksController extends Controller
         }
         $book->save();
 
+        if (!empty($request['rel_book'])){
+            $relatedBook = Book::where('title', $request['rel_book'])->first();
+            $relatedBook->related_book_id = $book->id;
+            $relatedBook->update();
+        }
+
         $collections = $request['collection'];
 
         if (!empty($collections)){
@@ -202,9 +208,17 @@ class BooksController extends Controller
         if (!empty($request['rel_book'])){
             $relatedBook = Book::where('title', $request['rel_book'])->first();
             $book->related_book_id = $relatedBook->id;
+        }else{
+            $book->related_book_id = null;
         }
 
         $book->update();
+
+        if (!empty($request['rel_book'])){
+            $relatedBook = Book::where('title', $request['rel_book'])->first();
+            $relatedBook->related_book_id = $book->id;
+            $relatedBook->update();
+        }
 
         $collections = $request['collection'];
 

@@ -3,3 +3,6 @@
 @section('content')
     All Feedbacks
 @endsection
+
+@section('script')
+@endsection

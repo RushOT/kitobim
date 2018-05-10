@@ -28,6 +28,7 @@ class CreateBooksTable extends Migration
             $table->string('script')->nullable();
             $table->string('cover')->nullable();
             $table->string('epub')->nullable();
+            $table->float('rating')->nullable();
             $table->timestamps();
         });
 

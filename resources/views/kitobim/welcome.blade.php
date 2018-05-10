@@ -6,6 +6,10 @@
     <script type="text/javascript" src="{{asset('slick/slick.min.js')}}"></script>
 @endsection
 
+@section('active')
+    active
+@endsection
+
 @section('content')
     <h2 class="pt-2" align="center">Reccomended Books</h2>
     <hr class="container">
@@ -24,8 +28,8 @@
                                 <span class="fa fa-star checked-star"></span>
                                 <span class="fa fa-star checked-star"></span>
                                 <span class="fa fa-star checked-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star checked-star"></span>
                             </div>
                             <p>
                                 George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
@@ -37,21 +41,20 @@
                 <div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="mainBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="300px" width="200px">
+                            <img class="mainBookImage" src="{{asset('images/harry.png')}}" alt="" height="300px" width="200px">
                         </div>
                         <div class="col-md-8">
-                            <h4> <span> by &nbsp</span> George Martin</h4>
-                            <h6>Game Of Thrones</h6>
+                            <h4> <span> by &nbsp</span> J K. Rowling</h4>
+                            <h6>Harry Potter and the Philosopher's stone</h6>
                             <div>
                                 <span class="fa fa-star checked-star"></span>
                                 <span class="fa fa-star checked-star"></span>
                                 <span class="fa fa-star checked-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star checked-star"></span>
+                                <span class="fa fa-star "></span>
                             </div>
                             <p>
-                                George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
-                            </p>
+                                Harry Potter and the Philosopher's Stone is a fantasy novel written by British author J. K. Rowling. It is the first novel in the Harry Potter series and Rowling's debut novel, first published in 1997 by Bloomsbury. It was published in the United States as Harry Potter and the Sorcerer's Stone by Scholastic Corporation in 1998. The plot follows Harry Potter, a young wizard who discovers his magical heritage as he makes close friends and a few enemies in his first year at the Hogwarts School of Witchcraft and Wizardry.                            </p>
                             <button class="btn btn-primary box"><i class="icon icon-book-open"></i> READ</button>
                         </div>
                     </div>
@@ -59,11 +62,11 @@
                 <div>
                     <div class="row">
                         <div class="col-md-4">
-                            <img class="mainBookImage" src="{{asset('images/cover.jpg')}}" alt="" height="300px" width="200px">
+                            <img class="mainBookImage" src="{{asset('images/snatch.jpg')}}" alt="" height="300px" width="200px">
                         </div>
                         <div class="col-md-8">
-                            <h4> <span> by &nbsp</span> George Martin</h4>
-                            <h6>Game Of Thrones</h6>
+                            <h4> <span> by &nbsp</span> Ty Hutchinson</h4>
+                            <h6>Contract: Snatch</h6>
                             <div>
                                 <span class="fa fa-star checked-star"></span>
                                 <span class="fa fa-star checked-star"></span>
@@ -72,8 +75,7 @@
                                 <span class="fa fa-star"></span>
                             </div>
                             <p>
-                                George R.R. Martin's best-selling book series `A Song of Ice and Fire' is brought to the screen as HBO sinks its considerable storytelling teeth into the medieval fantasy epic. It's the depiction of two powerful families - kings and queens, knights and renegades, liars and honest men - playing a deadly game for control of the Seven Kingdoms of Westeros, and to sit atop the Iron Throne. Martin is credited as a co-executive producer and one of the writers for the series, which was filmed in Northern Ireland and Malta
-                            </p>
+                                Sei abandoned her life as an assassin to try to find peace—but when contacted by a source claiming to have information about the daughter she thought she’d lost, Sei finds herself taking on one last mission. Can she unravel the truth before time runs out?                            </p>
                             <button class="btn btn-primary box"><i class="icon icon-book-open"></i> READ</button>
                         </div>
                     </div>

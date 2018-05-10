@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -32,6 +34,18 @@ class HomeController extends Controller
             return view('home', compact('message'));
         }
 
-        return view('home');
+        $wishlistrow = DB::table('wishlist')->where('user_id', Auth::id())->get();
+
+        $bids = [];
+
+        $i = 0;
+
+        foreach ($wishlistrow as $wr){
+            $bids[$i] = $wr->book_id;
+            $i++;
+        }
+
+        $books = Book::findMany($bids);
+        return view('home', compact('books'));
     }
 }

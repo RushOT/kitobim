@@ -133,7 +133,10 @@ class UsersController extends Controller
             $user->is_active = false;
         }
 
-        $user->password = bcrypt($request['password']);
+        if (!empty($request['password'])){
+            $user->password = bcrypt($request['password']);
+        }
+
         $user->birth = $request['birth'];
         $user->city = $request['city'];
 

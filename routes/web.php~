@@ -27,13 +27,9 @@ Route::get('/browse/{item}','KitobimController@browse');
 
 Route::get('/authors','KitobimController@authors');
 
-Route::get('/authors/{id}','KitobimController@getAuthor');
-
-Route::get('/publishers/{id}','KitobimController@getPublisher');
-
 Route::get('/books/{id}','KitobimController@book');
 
-Route::get('/publishers','KitobimController@getPublishers');
+Route::get('/ratebook','KitobimController@rateBook');
 
 Route::get('/download/{id}', function ($id){
     $book = Book::find($id);
@@ -175,12 +171,3 @@ Route::get('/download/issuesepub/{filename}','KitobimController@downloadEpub');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-/*AJAX*/
-
-Route::post('/wishlistremove','KitobimController@removeFromWishlist');
-
-Route::post('/ratebook','KitobimController@rateBook');
-
-Route::post('/wishlist','KitobimController@addToWishlist');
-

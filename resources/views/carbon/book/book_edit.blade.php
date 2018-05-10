@@ -157,7 +157,11 @@
                             <select id="publisher" class="form-control" name="publisher_index">
                                 <option value="0">other</option>
                                 @foreach($publishers as $publisher)
-                                    <option value="{{$publisher->id}}">{{$publisher->name}}</option>
+                                    <option value="{{$publisher->id}}"
+                                    @if($book->publisher->id == $publisher->id)
+                                        selected
+                                            @endif
+                                    >{{$publisher->name}}</option>
                                 @endforeach
                             </select>
                         </div>

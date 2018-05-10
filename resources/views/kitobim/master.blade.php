@@ -74,13 +74,19 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Books</a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/browse/genres">Genres</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/browse/authors">Authors</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/publishers">Publishers</a>
+                    </li>
+                    <li class="nav-item dropdown @yield('active-browse')">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Read
                         </a>
@@ -128,8 +134,6 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <div class="row">
                                 <a class="dropdown-item" href="/browse/books">Books</a>
-                                <a class="dropdown-item" href="/browse/authors">Authors</a>
-                                <a class="dropdown-item" href="/browse/genres">Genres</a>
                                 <a class="dropdown-item" href="/browse/collections">Collections</a>
                                 <a class="dropdown-item" href="/browse/magazines">Magazines</a>
                             </div>
@@ -137,10 +141,10 @@
                     </li>
                     @if(!Auth::check())
                         <li class="nav-item">
-                            <a class="nav-link" id="login" href="{{route('login')}}">Login</a>
+                            <a class="nav-link btn btn-outline-dark" id="loginButton" href="{{route('login')}}">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="register" href="{{route('register')}}">Register</a>
+                        <li class="nav-item ml-2">
+                            <a class="nav-link btn btn-outline-info" id="registerButton" href="{{route('register')}}">Register</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
@@ -149,7 +153,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="row">
-                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="/home">Profile</a>
                                     <a class="dropdown-item" href="#">Authors</a>
                                     <a class="dropdown-item" href="#">Genres</a>
                                     <a class="dropdown-item" href="#">Collections</a>

@@ -21,7 +21,7 @@
         </a>
 
         <a class="navbar-brand" href="/">
-            <img src="{{asset('gretong/images/kitobim_ava.png')}}" alt="" width="127" height="30">
+            <img src="{{asset('images/logo.png')}}" alt="" width="127" height="30">
         </a>
 
         <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
