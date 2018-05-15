@@ -33,4 +33,87 @@
             </form>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-header bg-light">
+            <strong>Books</strong>
+        </div>
+        <div class="card-body">
+
+        </div>
+
+
+        <div class="card-body bg-light">
+            <form action="/admin/collections/{{$collection->id}}/books" method="post">
+                {{csrf_field()}}
+                <div class="p-4 mb-2" style="border: 1px solid lightblue">
+                    <div class="row ml-1 mb-2">
+                        Add Book
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <input id="addBook" type="text" class="form-control" placeholder="Search book" name="book">
+                            </div>
+                            <div class="list-group" id="searchResultsList">
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-primary" href="/admin/book" target="_blank">
+                                <i class="fa fa-plus" style="color: white"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row"  id="badges-container">
+                                @foreach($collection->books as $book)
+                                    <h4><span class="badge badge-info mr-1"> <input type="hidden" name="book[]" value="{{$book->title}}" />{{$book->title}}</span></h4>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('carbon/js/axios.min.js')}}"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            let $responseList = $('#searchResultsList');
+
+            let $authorInput = $('#addBook');
+
+            $authorInput.on("change paste keyup", function() {
+
+                axios.post('/booksajax',{
+                    title: $authorInput.val()
+                })
+                    .then(function (response) {
+                        $responseList.empty();
+                        let i = 0;
+                        for(i = 0; i < response.data.length; i++){
+                            $responseList.append("<span  class=\"list-group-item list-group-item-action anchorTagAuthor\" >"+ response.data[i].title +"</span>");
+                        }
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            });
+
+            $(".list-group").on( "click","span", function(){
+                $('#badges-container').append("<h4><span class=\"badge badge-info mr-1\"> <input type=\"hidden\" name=\"book[]\" value=\""  + $(this).text() + "\"> "+ $(this).text() +  "</span></h4>");
+            });
+
+            $('#badges-container').on("click", "h4", function(){
+                $(this).remove();
+            });
+        });
+    </script>
 @endsection

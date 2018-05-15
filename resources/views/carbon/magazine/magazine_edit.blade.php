@@ -70,13 +70,9 @@
                 </div>
 
                 <div class="form-group">
-                    <select id="magazine-select" class="form-control" name="publisher_id" required>
-                        @foreach($publishers as $publisher)
-                            <option value="{{$publisher->id}}" @if($publisher->id == $magazine->publisher->id) selected @endif >{{$publisher->name}}</option>
-                        @endforeach
-                    </select>
+                    <label for="issn">ISSN</label>
+                    <input class="form-control" type="text" id="issn" name="issn" value="{{$magazine->issn}}">
                 </div>
-
                 <div class="row">
                     <div class="col-md-3">
                         Cover:

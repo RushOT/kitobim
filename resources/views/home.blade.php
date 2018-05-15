@@ -23,7 +23,13 @@
                                 <div>
                                     <div class="row pt-4 pb-4">
                                         <div class="col-sm-3">
-                                            <img class="shelfBookImageNoBorder" src="{{asset('images/placeholder.png')}}" alt="" height="170px" width="110px">
+                                            <img class="shelfBookImageNoBorder"
+                                                 @if(empty($book->cover))
+                                                 src="{{asset('images/placeholder.png')}}"
+                                                 @else
+                                                 src="{{asset('storage/'.$book->cover)}}"
+                                                 @endif
+                                                 height="170px" width="110px">
                                             <div class="mt-2">
                                                 <span class="fa fa-star checked-star"></span>
                                                 <span class="fa fa-star checked-star"></span>
@@ -43,9 +49,9 @@
                                                 @endforeach
                                             </h6>
                                             <h6>{{$book->title}}</h6>
-                                            <p class="bookDesc">
-                                                {{$book->annotation}}
-                                            </p>
+                                            <div class="bookDesc">
+                                                {!! $book->annotation !!}
+                                            </div>
                                             <button id="{{$book->id}}" class="btn btn-outline-danger deleteFromWishlist"><i class="icon icon-trash"></i>  Delete from Wishlist</button>
                                         </div>
                                     </div>

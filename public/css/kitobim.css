@@ -290,6 +290,47 @@ h6 span {
     display: none;
 }
 
+.display-yes{
+    display: block;
+}
+
+
+#exitButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#searchArea{
+    position: absolute;
+    top:40px;
+    overflow: visible;
+    min-height: 100px;
+    width: 100%;
+    display: none;
+    background-color: white;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.20);
+    z-index: 1;
+}
+
+#seeAll{
+    position: relative;
+    bottom: 0px;
+}
+
+#smallText{
+    font-size: 0.8rem;
+}
+
+#hrNoMarg{
+    margin: 1px;
+    border: 1px solid black;
+}
+
+.highlight { background-color: #00bbff
+}
+
 
 /*snackbar*/
 #snackbar {

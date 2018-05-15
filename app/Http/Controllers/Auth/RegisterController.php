@@ -78,9 +78,9 @@ class RegisterController extends Controller
         }
         $user->is_active = 0;
         $user->password = Hash::make($data['password']);
-        $user->last_login = now();
+        $user->last_login = now();/*
         $user->activation_code = str_random(30).time();
-        $user->notify(new UserRegisteredSuccessfully($user));
+        $user->notify(new UserRegisteredSuccessfully($user));*/
         $user->save();
 
         return $user;
@@ -92,11 +92,11 @@ class RegisterController extends Controller
             if (!$user) {
                 return "The code does not exist for any user in our system.";
             }
-            $user->is_active = 1;
+            $user->is_active = true;
             $user->activation_code = null;
             $user->update();
             auth()->login($user);
 
-        return redirect()->to('/home');
+        return redirect()->to('/home')->with('username',$user->name);
     }
 }

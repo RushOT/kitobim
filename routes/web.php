@@ -14,16 +14,13 @@
 use App\Book;
 use Illuminate\Support\Facades\Storage;
 
-Route::get('/', function () {
-
-    $publishers = \App\Publisher::all();
-
-    return view('kitobim.welcome', compact('publishers'));
-});
+Route::get('/', 'KitobimController@welcome');
 
 Route::get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('activate.user');
 
 Route::get('/browse/{item}','KitobimController@browse');
+
+Route::get('/books/sort/{type}','KitobimController@getBooksType');
 
 Route::get('/authors','KitobimController@authors');
 
@@ -34,6 +31,8 @@ Route::get('/publishers/{id}','KitobimController@getPublisher');
 Route::get('/books/{id}','KitobimController@book');
 
 Route::get('/publishers','KitobimController@getPublishers');
+
+Route::get('/kitobim/{epoint}','KitobimController@flatpages');
 
 Route::get('/download/{id}', function ($id){
     $book = Book::find($id);
@@ -113,7 +112,6 @@ Route::patch('/admin/authors/{id}','AuthorsController@update');
 
 Route::delete('/admin/authors/{id}','AuthorsController@destroy');
 
-Route::post('/authorsajax','AuthorsController@getAuthorsForSearch');
 
 /*GENRES related routes*/
 
@@ -136,6 +134,8 @@ Route::post('/admin/collections','CollectionsController@store');
 Route::get('/admin/collections/{id}','CollectionsController@edit');
 
 Route::patch('/admin/collections/{id}','CollectionsController@update');
+
+Route::post('/admin/collections/{id}/books','CollectionsController@addBooks');
 
 Route::delete('/admin/collections/{id}','CollectionsController@destroy');
 
@@ -164,6 +164,20 @@ Route::patch('/admin/issues/{id}','MagazinesController@updateIssue');
 
 Route::delete('/admin/issues/{id}','MagazinesController@destroyIssue');
 
+/*FLAT PAGES*/
+
+Route::get('/admin/pages','PagesController@index');
+
+Route::get('/admin/pages/create','PagesController@create');
+
+Route::post('/admin/pages','PagesController@store');
+
+Route::get('/admin/pages/{id}','PagesController@edit');
+
+Route::patch('/admin/pages/{id}','PagesController@update');
+
+Route::delete('/admin/pages/{id}','PagesController@destroy');
+
 /*DOWNLOAD Section*/
 
 Route::get('/download/books/{filename}','KitobimController@downloadBook');
@@ -184,3 +198,10 @@ Route::post('/ratebook','KitobimController@rateBook');
 
 Route::post('/wishlist','KitobimController@addToWishlist');
 
+Route::post('/authorsajax','AuthorsController@getAuthorsForSearch');
+
+Route::post('/booksajax','BooksController@getBooksForSearch');
+
+Route::post('/search','KitobimController@search');
+
+Route::get('/search/results/{keyword}','KitobimController@wideSearch');

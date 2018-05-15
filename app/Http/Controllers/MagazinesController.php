@@ -55,12 +55,11 @@ class MagazinesController extends Controller
         $magazine->description = $request['description'];
         $magazine->founded = $request['founded'];
         $magazine->is_active = true;
+        $magazine->issn = $request['issn'];
 
         if (!empty($request['cover'])){
             $magazine->cover = $request->file('cover')->store('magazines','public');
         }
-
-        $magazine->publisher_id = $request['publisher_id'];
 
         $magazine->save();
 
@@ -111,7 +110,7 @@ class MagazinesController extends Controller
         $magazine->name = $request['name'];
         $magazine->founded = $request['founded'];
         $magazine->description = $request['description'];
-        $magazine->publisher_id = $request['publisher_id'];
+        $magazine->issn = $request['issn'];
 
         if ($request['is_active'] == 'on'){
             $magazine->is_active = true;

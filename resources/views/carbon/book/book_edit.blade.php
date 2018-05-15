@@ -17,11 +17,32 @@
             <form action="/admin/books/{{$book->id}}" method="post" enctype="multipart/form-data">
                 {{method_field('patch')}}
                 {{csrf_field()}}
-                <div class="form-group">
-                    <div class="toggle-switch" data-ts-color="primary">
-                        <label for="isChecked" class="ts-label">Active</label>
-                        <input id="isChecked" type="checkbox" name="is_active" hidden="hidden" @if($book->is_active == 1) checked @endif >
-                        <label for="isChecked" class="ts-helper"></label>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="toggle-switch" data-ts-color="primary">
+                                <label for="isChecked" class="ts-label">Active</label>
+                                <input id="isChecked" type="checkbox" name="is_active" hidden="hidden"
+                                @if($book->is_active) checked @endif
+                                >
+                                <label for="isChecked" class="ts-helper"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-right: 1px solid grey">
+
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="toggle-switch" data-ts-color="primary">
+                                <label for="isPinned" class="ts-label">Pinned</label>
+                                <input id="isPinned" type="checkbox" name="is_pinned" hidden="hidden"
+                                       @if($book->is_pinned) checked @endif
+                                >
+                                <label for="isPinned" class="ts-helper"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr>

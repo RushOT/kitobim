@@ -29,6 +29,7 @@ class CreateBooksTable extends Migration
             $table->string('cover')->nullable();
             $table->string('epub')->nullable();
             $table->float('rating')->nullable();
+            $table->boolean('is_pinned');
             $table->timestamps();
         });
 

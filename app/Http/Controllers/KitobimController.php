@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Book;
 use App\Collection;
+use App\FlatPage;
 use App\Genre;
 use App\Issue;
 use App\Magazine;
@@ -16,6 +17,23 @@ use Illuminate\Support\Facades\Storage;
 
 class KitobimController extends Controller
 {
+    public function welcome(){
+        $books = Book::where('is_pinned', true)->get();
+
+        $newRels = Book::orderBy('created_at','desc')->take(5)->get();
+
+        return view('kitobim.welcome',compact('books','newRels'));
+    }
+
+    public function flatpages($epoint){
+
+        $url = "/".$epoint;
+
+        $page = FlatPage::where('url',$url)->first();
+
+        return view('kitobim.flatpage', compact('page'));
+    }
+
     public function getFeedbacks(){
 
         return view('carbon.feedback');
@@ -52,6 +70,17 @@ class KitobimController extends Controller
         return view('kitobim.browse', compact('item','books','authors','genres','collections','magazines'));
     }
 
+    public function getBooksType($type){
+
+        $reccomended = Book::where('is_pinned',true)->get();
+        $read = Book::orderBy('rating','desc')->take(25)->get();
+        $free = Book::orderBy('rating','desc')->where('price',0)->take(25)->get();
+        $paid = Book::orderBy('rating','desc')->where('price','>',0)->take(25)->get();
+        $new = Book::orderBy('created_at','desc')->take(25)->get();
+
+        return view('kitobim.books', compact('type','reccomended','read','free','paid','new'));
+    }
+
     public function book($id){
 
         $book = Book::find($id);
@@ -81,11 +110,28 @@ class KitobimController extends Controller
         if (DB::table('book_ratings')->where([
             ['user_id', $request['user_id']],['book_id',$request['book_id']]
         ])->exists()){
-            return DB::table('book_ratings')->where([['user_id', $request['user_id']],['book_id', $request['book_id']]])->update(['rate' => $request['point']]);
+            DB::table('book_ratings')->where([['user_id', $request['user_id']],['book_id', $request['book_id']]])->update(['rate' => $request['point']]);
         }else{
-            return DB::insert('insert into book_ratings (book_id, user_id, rate) values (?, ?, ?)',[$request['book_id'],$request['user_id'],$request['point']]);
+            DB::insert('insert into book_ratings (book_id, user_id, rate) values (?, ?, ?)',[$request['book_id'],$request['user_id'],$request['point']]);
         }
 
+        $books = DB::table('book_ratings')->where('book_id', $request['book_id'])->get();
+
+        $sum = 0;
+
+        foreach ($books as $book){
+            $sum = $sum + $book->rate;
+        }
+
+        $avg = (float)$sum/(float)$books->count();
+
+        $book = Book::find($request['book_id']);
+
+        $book->rating = $avg;
+
+        $book->update();
+
+        return "succesfull";
     }
 
     public function addToWishlist(Request $request){
@@ -122,5 +168,26 @@ class KitobimController extends Controller
         $publisher = Publisher::find($id);
 
         return view('kitobim.publisher',compact('publisher'));
+    }
+
+    public function search(Request $request){
+        $books = Book::where('title', 'LIKE', '%'.$request['keyword'].'%')->get();
+        $booksAnnotations = Book::where('annotation', 'LIKE', '%'.$request['keyword'].'%')->get();
+        $authors = Author::where('name', 'LIKE', '%'.$request['keyword'].'%')->get();
+
+        return ['books'=> $books,
+            'annotations' => $booksAnnotations,
+            'authors' => $authors
+        ];
+    }
+
+    public function wideSearch($keyword){
+
+        $books = Book::where('title', 'LIKE', '%'.$keyword.'%')->get();
+        $booksAnnotations = Book::where('annotation', 'LIKE', '%'.$keyword.'%')->get();
+        $authors = Author::where('name', 'LIKE', '%'.$keyword.'%')->get();
+
+
+        return view('kitobim.search', compact('books','authors','booksAnnotations','keyword'));
     }
 }

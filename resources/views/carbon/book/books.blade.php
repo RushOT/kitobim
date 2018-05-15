@@ -18,8 +18,9 @@
                     <thead class="thead-dark">
                     <tr>
                         <th style="width: 30%">Title</th>
-                        <th style="width: 40%">Authors</th>
+                        <th style="width: 35%">Authors</th>
                         <th style="width: 10%">Price</th>
+                        <th style="width: 5%">Pin</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                                         @endforeach </td>
                                     @endif
                                 <td>{{$book->price}}</td>
+                                <td>{{$book->is_pinned}}</td>
                             </tr>
                         @endforeach
                     </tbody>

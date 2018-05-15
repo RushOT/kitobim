@@ -29,11 +29,9 @@
                                          @endif
                                          alt="" height="170px" width="110px">
                                     <div class="mt-2">
-                                        <span class="fa fa-star checked-star"></span>
-                                        <span class="fa fa-star checked-star"></span>
-                                        <span class="fa fa-star checked-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>  3.4/5
+                                        @for($i = 1; $i < 6; $i++)
+                                            <span class="fa fa-star @if($i <= round($book->rating)) checked-star @endif"></span>
+                                        @endfor @if(!empty($book->rating)) {{$book->rating}} @else - @endif /5
                                     </div>
                                     <a href="/books/{{$book->id}}" class="btn btn-primary buttonToAnchor">{{$book->price}} so'm</a>
                                 </div>
@@ -132,6 +130,7 @@
                                         <button class="btn btn-outline-warning"> <i class="icon icon-book-open"></i>  READ</button>
                                     </div>
                                 </div>
+                                <hr>
                             @endforeach
                         </div>
                     </div>

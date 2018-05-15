@@ -19,8 +19,8 @@ class CreateMagazinesTable extends Migration
             $table->date('founded')->nullable();
             $table->text('description')->nullable();
             $table->string('cover')->nullable();
-            $table->boolean('is_active');
-            $table->integer('publisher_id')->nullable();
+            $table->boolean('is_active')->default(1);
+            $table->string('issn')->nullable();
             $table->timestamps();
         });
     }

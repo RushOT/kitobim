@@ -24,7 +24,7 @@ class BooksController extends Controller
 
     public function index()
     {
-        $books = Book::all();
+        $books = Book::orderBy('is_pinned','desc')->orderBy('title','asc')->get();
         return view('carbon.book.books', compact('books'));
     }
 
@@ -69,6 +69,12 @@ class BooksController extends Controller
             $book->is_active = true;
         }else{
             $book->is_active = false;
+        }
+
+        if ($request['is_pinned'] == 'on'){
+            $book->is_pinned = true;
+        }else{
+            $book->is_pinned = false;
         }
 
         if (!empty($request['rel_book'])){
@@ -191,6 +197,13 @@ class BooksController extends Controller
         }else{
             $book->is_active = false;
         }
+
+        if ($request['is_pinned'] == 'on'){
+            $book->is_pinned = true;
+        }else{
+            $book->is_pinned = false;
+        }
+
         $book->script = $request['script'];
         if (!empty($request['cover'])){
             if (!empty($book->cover)){
@@ -279,5 +292,15 @@ class BooksController extends Controller
 
         return $books;
 
+    }
+
+    public function getBooksForSearch(Request $request){
+        if ($request['title'] == ""){
+            return "";
+        }
+
+        $authors = Book::where('title', 'LIKE', '%'.$request['title'].'%')->get();
+
+        return $authors;
     }
 }

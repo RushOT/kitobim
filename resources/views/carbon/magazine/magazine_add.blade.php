@@ -23,15 +23,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <select id="magazine-select" class="form-control" name="publisher_id" required>
-                        @foreach($publishers as $publisher)
-                            <option value="{{$publisher->id}}" >{{$publisher->name}}</option>
-                        @endforeach
-                    </select>
+                    <label for="issn">ISSN</label>
+                    <input class="form-control" type="text" id="issn" name="issn" placeholder="ISSN of a magazine">
                 </div>
-
                 <div class="form-group">
                     <label for="description" class="form-control-label">Description</label>
                     <textarea id="description" class="form-input" name="description"></textarea>

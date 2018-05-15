@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Collection;
 use Illuminate\Http\Request;
 
@@ -108,5 +109,23 @@ class CollectionsController extends Controller
         $collection->delete();
         $collections = Collection::all();
         return view('carbon.collection.collections', compact('collections'));
+    }
+
+    public function addBooks(Request $request, $id){
+
+        $collection = Collection::find($id);
+
+        $collection->books()->detach();
+
+        $books = $request['book'];
+
+        if (!empty($books)){
+            foreach ($books as $book){
+                $a = Book::where('title', $book)->first();
+                $collection->books()->attach($a->id);
+            }
+        }
+
+        return redirect()->back();
     }
 }

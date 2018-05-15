@@ -40,12 +40,10 @@
                 <div class="row mt-3 ml-1">
                     <h3>{{$book->title}}</h3>
                     <div class="row m-2">
-                        <span class="fa fa-star checked-star"></span>
-                        <span class="fa fa-star checked-star"></span>
-                        <span class="fa fa-star checked-star"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                        <h6 class="ml-1"><span>avg</span> 4.5/5</h6>
+                        @for($i = 1; $i < 6; $i++)
+                            <span class="fa fa-star @if($i <= round($book->rating)) checked-star @endif"></span>
+                        @endfor
+                        <h6 class="ml-1"><span>avg</span> @if(!empty($book->rating)) {{$book->rating}} @else - @endif /5</h6>
                     </div>
                 </div>
                 <h6><span>Authors:</span>

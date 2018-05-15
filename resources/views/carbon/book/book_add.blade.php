@@ -15,11 +15,27 @@
         <div class="card-body">
             <form action="/admin/books" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <div class="form-group">
-                    <div class="toggle-switch" data-ts-color="primary">
-                        <label for="isChecked" class="ts-label">Active</label>
-                        <input id="isChecked" type="checkbox" name="is_active" hidden="hidden" checked>
-                        <label for="isChecked" class="ts-helper"></label>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="toggle-switch" data-ts-color="primary">
+                                <label for="isChecked" class="ts-label">Active</label>
+                                <input id="isChecked" type="checkbox" name="is_active" hidden="hidden" checked>
+                                <label for="isChecked" class="ts-helper"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="border-right: 1px solid grey">
+
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <div class="toggle-switch" data-ts-color="primary">
+                                <label for="isPinned" class="ts-label">Pinned</label>
+                                <input id="isPinned" type="checkbox" name="is_pinned" hidden="hidden">
+                                <label for="isPinned" class="ts-helper"></label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <hr>

@@ -93,8 +93,6 @@
                         </a>
                     </li>
 
-                    <li class="nav-title">Kitobim</li>
-
                     <li class="nav-item nav-dropdown">
                         <a href="#" class="nav-link @yield('active_authors') @yield('active_authors_add') nav-dropdown-toggle">
                             <i class="icon icon-pencil "></i> Authors <i class="fa fa-caret-left"></i>
@@ -217,57 +215,24 @@
                         </ul>
                     </li>
 
-
-
-                    <li class="nav-title">More</li>
-
                     <li class="nav-item nav-dropdown">
-                        <a href="#" class="nav-link nav-dropdown-toggle">
-                            <i class="icon icon-umbrella"></i> Pages <i class="fa fa-caret-left"></i>
+                        <a href="#" class="nav-link @yield('active_pages') @yield('active_pages_add') nav-dropdown-toggle">
+                            <i class="icon icon-umbrella"></i> Flat Pages <i class="fa fa-caret-left"></i>
                         </a>
 
                         <ul class="nav-dropdown-items">
                             <li class="nav-item">
-                                <a href="blank.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Blank Page
+                                <a href="/admin/pages" class="nav-link @yield('active_pages')">
+                                    <i class="icon icon-list"></i> All
                                 </a>
                             </li>
 
                             <li class="nav-item">
-                                <a href="login.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Login
+                                <a href="/admin/pages/create" class="nav-link @yield('active_pages_add')">
+                                    <i class="icon icon-plus"></i> Add
                                 </a>
                             </li>
 
-                            <li class="nav-item">
-                                <a href="register.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Register
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="invoice.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Invoice
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="404.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 404
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="500.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> 500
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="settings.html" class="nav-link">
-                                    <i class="icon icon-umbrella"></i> Settings
-                                </a>
-                            </li>
                         </ul>
                     </li>
                 </ul>

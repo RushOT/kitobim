@@ -33,21 +33,21 @@
             <div class="row pt-4">
                 <div class="col">
                     <h6>Kitobim</h6>
-                    <a class="footerLinks" href="#">Sayt haqida</a> <br>
-                    <a class="footerLinks" href="#">Foydalanish shartlari</a> <br>
-                    <a class="footerLinks" href="#">Ko'p beriladigan savollar</a> <br>
+                    <a class="footerLinks" href="/kitobim/about">Sayt haqida</a> <br>
+                    <a class="footerLinks" href="/kitobim/terms">Foydalanish shartlari</a> <br>
+                    <a class="footerLinks" href="/kitobim/faq">Ko'p beriladigan savollar</a> <br>
                 </div>
                 <div class="col">
                     <h6>Yordam</h6>
-                    <a class="footerLinks" href="#">Servisdan foydalanish</a> <br>
-                    <a class="footerLinks" href="#">Kitobim dasturi</a> <br>
-                    <a class="footerLinks" href="#">Kitoblarni turli qurilmalarda o'qish</a> <br>
-                    <a class="footerLinks" href="#">Yangi kitoblar uchun so'rovlar</a> <br>
+                    <a class="footerLinks" href="/kitobim/help">Servisdan foydalanish</a> <br>
+                    <a class="footerLinks" href="/kitobim/aboutapp">Kitobim dasturi</a> <br>
+                    <a class="footerLinks" href="/kitobim/books">Kitoblarni turli qurilmalarda o'qish</a> <br>
+                    <a class="footerLinks" href="/kitobim/requests">Yangi kitoblar uchun so'rovlar</a> <br>
                 </div>
                 <div class="col">
                     <h6>Hamkorlik</h6>
-                    <a class="footerLinks" href="#">Nashriyotlar va mustqail mualliflar uchun</a> <br>
-                    <a class="footerLinks" href="#">Reklama</a> <br>
+                    <a class="footerLinks" href="/kitobim/partners">Nashriyotlar va mustqail mualliflar uchun</a> <br>
+                    <a class="footerLinks" href="/kitobim/ads">Reklama</a> <br>
                 </div>
                 <div class="col">
                     <h6>Kitobim</h6> © 2012—2018.
@@ -93,11 +93,11 @@
                         <div class="dropdown-menu pt-2" aria-labelledby="navbarDropdown" id="bigDropdown">
                             <div class="row">
                                 <div class="col-4" id="leftOfRand">
-                                    <a class="dropdown-item" href="#">Recommended</a>
-                                    <a class="dropdown-item" href="#">Top Read</a>
-                                    <a class="dropdown-item" href="#">Top Free</a>
-                                    <a class="dropdown-item" href="#">Top Paid</a>
-                                    <a class="dropdown-item" href="#">New Release</a>
+                                    <a class="dropdown-item" href="/books/sort/reccomended">Recommended</a>
+                                    <a class="dropdown-item" href="/books/sort/read">Top Read</a>
+                                    <a class="dropdown-item" href="/books/sort/free">Top Free</a>
+                                    <a class="dropdown-item" href="/books/sort/paid">Top Paid</a>
+                                    <a class="dropdown-item" href="/books/sort/new">New Release</a>
                                 </div>
                                 <div class="col-8" id="random-book-container">
                                     <p id="titleOfRandomBook">The most read book this week</p>
@@ -153,12 +153,20 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <div class="row">
-                                    <a class="dropdown-item" href="/home">Profile</a>
-                                    <a class="dropdown-item" href="#">Authors</a>
-                                    <a class="dropdown-item" href="#">Genres</a>
-                                    <a class="dropdown-item" href="#">Collections</a>
+                                    <a href="/home" class="dropdown-item">
+                                        <i class="fa fa-heart text-primary"></i> Wishlist
+                                    </a>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fa fa-wrench text-primary"></i> Settings
+                                    </a>
                                     <hr>
-                                    <a class="dropdown-item" href="#">Log Out</a>
+                                    <a href="{{ route('logout') }}" class="dropdown-item"
+                                       onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-lock text-primary"></i>  Logout</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
                         </li>
@@ -166,9 +174,12 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                        <input class="form-control" id="searchField" type="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                        <div id="searchArea" class="p-2">
+
+                        </div>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="icon icon-magnifier"></i></button>
+                            <button class="btn btn-outline-dark my-2 my-sm-0" id="searchButtton" type="button"><i class="icon icon-magnifier"></i></button>
                         </div>
                     </div>
                 </form>
@@ -178,5 +189,92 @@
 </div>
 
 @yield('script')
+<script src="{{asset('carbon/js/axios.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        let inputsearch = $('#searchField');
+        let resultCont = $('#searchArea');
+
+        $('#searchButtton').click(function(){
+            resultCont.css("display","block");
+            axios.post('/search', {
+                keyword: inputsearch.val()
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        inputsearch.on("change paste keyup",function(){
+            resultCont.css("display","block");
+            resultCont.empty();
+            if(inputsearch.val().length > 1){
+                axios.post('/search', {
+                    keyword: inputsearch.val()
+                })
+                    .then(function (response) {
+                        console.log(response.data);
+                        let books = response.data.books;
+                        let annotations = response.data.annotations;
+                        let authors = response.data.authors;
+
+                        console.log(books);
+                        console.log(annotations);
+                        console.log(authors);
+
+
+                        let i = 0;
+                        if(books.length >= 2){
+                            resultCont.append("<i>in Books</i><br>");
+                            for(i = 0; i < 2; i++){
+                                resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/books/"+ books[i].id +"\">"+ books[i].title +"</a><br>");
+                            }
+                        }else if(books.length === 1){
+                            resultCont.append("<i>in Books</i><br>");
+                            resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/books/"+ books[0].id +"\">"+ books[0].title +"</a><br>");
+                        }
+
+                        if(authors.length >= 2) {
+                            resultCont.append("<i>in Authors</i><br>");
+                            for(i = 0; i < 2; i++){
+                                resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/authors/" + authors[i].id + "\">"+ authors[i].name +"</a><br>");
+                            }
+                        }else if(authors.length === 1){
+                            resultCont.append("<i>in Authors</i><br>");
+                            resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/authors/" + authors[0].id + "\">"+ authors[0].name +"</a><br>");
+                        }
+
+                        if(annotations.length >= 2) {
+                            resultCont.append("<i>in Book annotations</i><br>");
+                            for(i = 0; i < 2; i++){
+                                resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/books/" + annotations[i].id + "\">"+ annotations[i].title +"</a><br>");
+                            }
+                        }else if(annotations.length === 1){
+                            resultCont.append("<i>in Book annotations</i><br>");
+                            resultCont.append("<a class=\"kitobimLink\" id=\"smallText\" href=\"/books/" + annotations[0].title + "\">"+ annotations[0].title +"</a><br>");
+                        }
+
+
+                        resultCont.append("                            <div id=\"seeAll\">\n" +
+                            "                                <hr>\n" +
+                            "                                <a href=\"/search/results/" + inputsearch.val() +"\"> see all</a>\n" +
+                            "                            </div>");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }else if(inputsearch.val().length == 0){
+                resultCont.css("display","none");
+            }
+        });
+
+        $('#exitButton').click(function(){
+            $('#searchArea').css("display","none");
+        });
+    });
+</script>
 </body>
 </html>

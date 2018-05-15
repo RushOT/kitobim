@@ -13,6 +13,7 @@ $factory->define(App\Book::class, function (Faker $faker) {
         'published_date' => $faker->date(),
         'published_time' => $faker->time(),
         'is_active' => 1,
+        'is_pinned' => 0,
         'script' => 'Latin',
     ];
 });
