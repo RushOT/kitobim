@@ -39,7 +39,7 @@
             <li class="nav-item d-md-down-none">
                 <a href="/admin/feedbacks">
                     <i class="fa fa-envelope-open"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
+                    <span class="badge badge-pill badge-danger">{{$feedbacks}}</span>
                 </a>
             </li>
 

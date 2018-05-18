@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', 'KitobimController@welcome');
 
-Route::get('/verify-user/{code}','Auth\RegisterController@activateUser')->name('activate.user');
+Route::get('/verify-user/{code}','KitobimController@activateUser')->name('activate.user');
 
 Route::get('/browse/{item}','KitobimController@browse');
 
@@ -50,13 +50,15 @@ Route::get('/admin', function () {
 
     return view('carbon.dashboard', compact('usersCount', 'activeUsersCount',
         'booksCount','authorsCount','publishersCount','magazinesCount'));
-})->middleware('auth');
+})->middleware('auth','admin');
 
 Route::get('/admin/feedbacks','KitobimController@getFeedbacks')->middleware('auth');
 
+Route::get('/admin/feedbacks/{id}','KitobimController@getFeedback')->middleware('auth');
+
+Route::patch('/admin/feedbacks/{id}','KitobimController@setResponse')->middleware('auth');
 
 /*USERS routes*/
-
 Route::get('/admin/users','UsersController@index');
 
 Route::get('/admin/user','UsersController@create');

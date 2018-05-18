@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Author;
 use App\Book;
 use App\Collection;
+use App\Feedback;
 use App\FlatPage;
 use App\Genre;
 use App\Issue;
 use App\Magazine;
 use App\Publisher;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +38,24 @@ class KitobimController extends Controller
 
     public function getFeedbacks(){
 
-        return view('carbon.feedback');
+        $feedbacks = Feedback::all();
+        return view('carbon.feedback',compact('feedbacks'));
+    }
+
+    public function getFeedback($id){
+
+        $feedback = Feedback::find($id);
+        $feedback->is_seen = true;
+        $feedback->save();
+        return view('carbon.feedback_see',compact('feedback'));
+    }
+
+    public function setResponse(Request $request,$id){
+        $feedback = Feedback::find($id);
+        $feedback->response = $request['response'];
+        $feedback->is_seen = true;
+        $feedback->save();
+        return redirect()->to('/admin/feedbacks');
     }
 
     public function downloadBook($filename){
@@ -189,5 +208,19 @@ class KitobimController extends Controller
 
 
         return view('kitobim.search', compact('books','authors','booksAnnotations','keyword'));
+    }
+
+    public function activateUser($code)
+    {
+        $user = User::where('activation_code', $code)->first();
+        if (!$user){
+            return "What are you doing? This not your verification code. Go and get One";
+        }
+        $user->is_active = true;
+        $user->activation_code = null;
+        $user->update();
+        auth()->login($user);
+
+        return redirect()->to('/home');
     }
 }

@@ -18,9 +18,9 @@ class CreateFeedbackTable extends Migration
             $table->integer('user_id');
             $table->text('body');
             $table->string('theme');
-            $table->boolean('is_seen');
-            $table->text('response');
-            $table->boolean('is_active');
+            $table->boolean('is_seen')->default(false);
+            $table->text('response')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
