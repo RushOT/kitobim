@@ -17,14 +17,6 @@
             </div>
             <div class="col-sm-9">
                 <h6><span>country: </span> {{$author->country}} </h6>
-                <h6><span>genres: </span>
-                    @foreach($author->genres as $genre)
-                        {{$genre->name}}
-                        @if(!$loop->last)
-                            ,
-                        @endif
-                    @endforeach
-                </h6>
                 <h6><i>{{date("F jS, Y",strtotime($author->birth_date))}}</i> - <i>
                     @if(!empty($author->death_date))
                         {{date("F jS, Y",strtotime($author->death_date))}}

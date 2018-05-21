@@ -48,4 +48,27 @@ class HomeController extends Controller
         $books = Book::findMany($bids);
         return view('home', compact('books'));
     }
+
+    public function getHome(){
+        if(!Auth::user()->is_active){
+
+            $message = "Please activate your account by clicking on link we sent to your email. Thank you!";
+
+            return view('mybooks', compact('message'));
+        }
+
+        $wishlistrow = DB::table('wishlist')->where('user_id', Auth::id())->get();
+
+        $bids = [];
+
+        $i = 0;
+
+        foreach ($wishlistrow as $wr){
+            $bids[$i] = $wr->book_id;
+            $i++;
+        }
+
+        $books = Book::findMany($bids);
+        return view('mybooks', compact('books'));
+    }
 }

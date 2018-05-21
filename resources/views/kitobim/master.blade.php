@@ -156,14 +156,18 @@
                                     <a href="/home" class="dropdown-item">
                                         <i class="fa fa-heart text-primary"></i> Wishlist
                                     </a>
+                                    <a href="/mybooks" class="dropdown-item">
+                                        <i class="fa fa-book text-primary"></i> My Books
+                                    </a>
                                     <a href="#" class="dropdown-item">
-                                        <i class="fa fa-wrench text-primary"></i> Settings
+                                        <i class="fa fa-wrench text-primary"></i> Profile
                                     </a>
                                     <hr>
                                     <a href="{{ route('logout') }}" class="dropdown-item"
                                        onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-lock text-primary"></i>  Logout</a>
+                                        <i class="fa fa-lock text-primary"></i>  Logout
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

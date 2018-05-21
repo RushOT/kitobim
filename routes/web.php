@@ -34,6 +34,8 @@ Route::get('/publishers','KitobimController@getPublishers');
 
 Route::get('/kitobim/{epoint}','KitobimController@flatpages');
 
+Route::get('/mybooks','HomeController@getHome');
+
 Route::get('/download/{id}', function ($id){
     $book = Book::find($id);
 
@@ -179,6 +181,20 @@ Route::get('/admin/pages/{id}','PagesController@edit');
 Route::patch('/admin/pages/{id}','PagesController@update');
 
 Route::delete('/admin/pages/{id}','PagesController@destroy');
+
+/*NOTIFICATIONS*/
+
+Route::get('/admin/notifications', 'NotificationController@index');
+
+Route::get('/admin/notifications/create','NotificationController@create');
+
+Route::post('/admin/notifications','NotificationController@store');
+
+Route::get('/admin/notifications/{id}','NotificationController@edit');
+
+Route::patch('/admin/notifications/{id}','NotificationController@update');
+
+Route::delete('/admin/notifications/{id}','NotificationController@destroy');
 
 /*DOWNLOAD Section*/
 

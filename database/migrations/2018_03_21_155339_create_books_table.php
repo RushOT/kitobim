@@ -50,6 +50,12 @@ class CreateBooksTable extends Migration
             $table->integer('author_id');
             $table->primary(['book_id','author_id']);
         });
+
+        Schema::create('book_user',function (Blueprint $table){
+            $table->integer('book_id');
+            $table->integer('user_id');
+            $table->primary(['book_id','user_id']);
+        });
     }
 
     /**
@@ -57,12 +63,13 @@ class CreateBooksTable extends Migration
      *
      * @return void
      */
+
     public function down()
     {
         Schema::dropIfExists('books');
         Schema::dropIfExists('book_collection');
         Schema::dropIfExists('book_genre');
         Schema::dropIfExists('author_book');
-
+        Schema::dropIfExists('book_user');
     }
 }

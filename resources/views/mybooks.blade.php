@@ -1,23 +1,21 @@
 @extends('layouts.app')
 
-@javascript('uid',Auth::id())
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Wishlist</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">My Books</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="card-body">
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
 
-                    @if(!Auth::user()->is_active)
-                        {{$message}}
+                        @if(!Auth::user()->is_active)
+                            {{$message}}
                         @else
                             @foreach($books as $book)
                                 <div>
@@ -50,18 +48,17 @@
                                             <div class="bookDesc">
                                                 {!! $book->annotation !!}
                                             </div>
-                                            <button id="{{$book->id}}" class="btn btn-outline-danger deleteFromWishlist"><i class="icon icon-trash"></i>  Delete from Wishlist</button>
                                         </div>
                                     </div>
                                     <hr>
                                 </div>
                             @endforeach
                         @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('script')
@@ -69,23 +66,7 @@
     <script src="{{asset('carbon/js/axios.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            let delButton = $('.deleteFromWishlist');
 
-            delButton.click(function(){
-                $(this).parent().parent().parent().addClass(' display-none');
-                let bid = $(this).attr('id');
-
-                axios.post('/wishlistremove', {
-                    book_id: bid,
-                    user_id: uid
-                })
-                    .then(function (response) {
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            });
         });
     </script>
 @endsection

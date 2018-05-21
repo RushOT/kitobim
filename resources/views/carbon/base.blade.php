@@ -29,12 +29,6 @@
         </a>
 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a href="#">
-                    <i class="fa fa-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-            </li>
 
             <li class="nav-item d-md-down-none">
                 <a href="/admin/feedbacks">
@@ -52,23 +46,16 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header">Account</div>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-user"></i> Profile
+                    <a href="/admin/feedbacks" class="dropdown-item">
+                        <i class="fa fa-envelope"></i> Feedbacks
                     </a>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-envelope"></i> Messages
-                    </a>
-
-                    <div class="dropdown-header">Settings</div>
-
-                    <a href="#" class="dropdown-item">
+                    <a href="/admin/notifications" class="dropdown-item">
                         <i class="fa fa-bell"></i> Notifications
                     </a>
 
-                    <a href="#" class="dropdown-item">
-                        <i class="fa fa-wrench"></i> Settings
-                    </a>
+
+                    <div class="dropdown-header"></div>
 
                     <a href="{{ route('logout') }}" class="dropdown-item"
                        onclick="event.preventDefault();
