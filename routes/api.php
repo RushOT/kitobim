@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('/users/{id}/feedbacks','APIsController@createFeedback');
 
     Route::get('/users/{id}/feedbacks','APIsController@getFeedbacks');
+
+    Route::get('/books/{id}/download','APIsController@downloadBook');
 });
 
 

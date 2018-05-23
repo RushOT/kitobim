@@ -14,19 +14,34 @@ class SimpleBookResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        $i=0;
+
+        foreach ($this->authors as $authr){
+            $authrs[$i++] = $authr->name;
+        }
+
+        $i=0;
+
+        foreach ($this->genres as $genr){
+            $genrs[$i++] = $genr->name;
+        }
+
+        if(empty($this->cover)){
+            $coverpic = $this->cover;
+        }else{
+            $coverpic = "http://development.baysoftware.ru/".$this->cover;
+        }
+
         return [
             'id' => $this->id,
             'title' =>$this->title,
             'price' => $this->price,
-            'year' => $this->year,
-            'cover' => $this->cover,
-            'epub' => $this->epub,
+            'cover' => $coverpic,
             'rating' => $this->rating,
-            'is_pinned' => $this->is_pinned,
-            'relationships' => [
-                'authors' => SimpleAuthorResource::collection($this->authors),
-                'genres' => SimpleGenreResource::collection($this->genres),
-            ]
+            'authors' => $authrs,
+            'genres' => $genrs,
+
         ];
     }
 }

@@ -18,6 +18,7 @@ class SimplePublisherResource extends JsonResource
             'id' => $this->id,
             'logo' => $this->logo,
             'name' => $this->name,
+            'books' => $this->books->count(),
         ];
     }
 }

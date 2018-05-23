@@ -11,10 +11,13 @@ use App\Http\Resources\AuthorCollection;
 use App\Http\Resources\AuthorResource;
 use App\Http\Resources\BooksCollection;
 use App\Http\Resources\BooksResource;
+use App\Http\Resources\CollectCollection;
+use App\Http\Resources\GenreCollection;
 use App\Http\Resources\PublisherCollection;
 use App\Http\Resources\PublisherResource;
 use App\Http\Resources\SimpleAuthorResource;
 use App\Http\Resources\SimpleBookResource;
+use App\Notifications\UserRegisteredSuccessfully;
 use App\Publisher;
 use App\User;
 use function GuzzleHttp\Promise\all;
@@ -22,6 +25,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class APIsController extends Controller
@@ -63,8 +67,7 @@ class APIsController extends Controller
     }
 
     public function getGenres(){
-        return ['count' => Genre::all()->count(),
-                'data'=> Genre::all()];
+        return new GenreCollection(Genre::paginate());
     }
 
     public function getBooksOfGenre($id){
@@ -72,8 +75,7 @@ class APIsController extends Controller
     }
 
     public function getCollections(){
-        return ['count' => Collection::all()->count(),
-                'data' => Collection::all()];
+        return new CollectCollection(Collection::paginate());
     }
 
     public function getBooksOfCollection($id){
@@ -118,18 +120,12 @@ class APIsController extends Controller
 
 
 
+    public function downloadBook($id){
 
+        $book = Book::find($id);
 
-
-
-
-
-
-
-
-
-
-
+        return Storage::download($book->epub);
+    }
 
 
     public function getWishlist($id){
@@ -169,7 +165,7 @@ class APIsController extends Controller
             $user->last_login = now();
             $user->save();
             $success['token'] =  $user->createToken('kitobim')-> accessToken;
-            return response()->json(['success' => $success], $this-> successStatus);
+            return response()->json($success);
         }
         else{
             return response()->json(['error'=>'Unauthorised'], 401);
@@ -187,7 +183,6 @@ class APIsController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'c_password' => 'required|same:password',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
@@ -201,4 +196,3 @@ class APIsController extends Controller
         return response()->json(['success'=>$success], $this-> successStatus);
     }
 }
-
